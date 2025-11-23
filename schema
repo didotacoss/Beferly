@@ -1,0 +1,58 @@
+graph LR
+    %% Styles
+    classDef front fill:#f8fafc,stroke:#6366f1,stroke-width:2px,color:#1e293b,rx:10,ry:10;
+    classDef back fill:#eef2ff,stroke:#3b82f6,stroke-width:2px,color:#1e293b,rx:5,ry:5;
+    classDef brain fill:#f0fdf4,stroke:#10b981,stroke-width:3px,color:#064e3b,rx:15,ry:15,stroke-dasharray: 5 5;
+    classDef external fill:#fff1f2,stroke:#f43f5e,stroke-width:2px,color:#881337,rx:5,ry:5;
+    classDef db fill:#f1f5f9,stroke:#64748b,stroke-width:2px,stroke-dasharray: 2 2;
+
+    %% ZONE 1: FRONTEND (L'Utilisateur)
+    subgraph UX ["💻 EXPERIENCE UTILISATEUR (Frontend)"]
+        User((Vanessa)) -->|Requête / Chat| App[📱 App Moneywork<br/>React Native / Web]
+        App -->|Visu Tréso| User
+    end
+
+    %% ZONE 2: BACKEND (L'Orchestrateur)
+    subgraph API ["⚙️ ORCHESTRATEUR (Backend GCP)"]
+        FastAPI[🚀 API Gateway<br/>FastAPI / Python]
+        DB[(🗄️ Base de Données<br/>PostgreSQL)]
+    end
+
+    %% ZONE 3: EXTERNAL (Le Carburant)
+    subgraph DATA ["🌍 DONNÉES SOURCES (APIs)"]
+        Powens[🏦 Powens<br/>Banques]
+        Penny[🧾 Pennylane<br/>Factures]
+        Defacto[💸 Partenaires<br/>Financement]
+    end
+
+    %% ZONE 4: THE BRAIN (L'Intelligence)
+    subgraph BRAIN ["🧠 LE CERVEAU (Vertex AI)"]
+        direction TB
+        Pred[📈 MOTEUR PRÉDICTIF<br/>XGBoost + LSTM<br/>Scoring & Forecast]
+        GenAI[🤖 COPILOTE GÉNÉRATIF<br/>Gemini 1.5 Pro<br/>Conseil & Dialogue]
+    end
+
+    %% CONNECTIONS
+    App <-->|HTTPS / JSON| FastAPI
+    FastAPI <-->|Lecture/Ecriture| DB
+
+    %% Ingestion
+    FastAPI <-->|1. Récupération Données| Powens
+    FastAPI <-->|1. Récupération Factures| Penny
+    
+    %% Intelligence Loop
+    FastAPI -->|2. Données Brutes| Pred
+    Pred -->|3. Prévisions & Score| FastAPI
+    
+    FastAPI -->|4. Contexte + Prévision| GenAI
+    GenAI -->|5. Réponse Naturelle| FastAPI
+
+    %% Action
+    FastAPI -->|6. Envoi Dossier| Defacto
+
+    %% Application des styles
+    class App front;
+    class FastAPI back;
+    class Pred,GenAI brain;
+    class Powens,Penny,Defacto external;
+    class DB db;
