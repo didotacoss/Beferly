@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moneywork - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: {
+                            purple: '#b0fb5d',
+                            blue: '#3b82f6',
+                            pink: '#ec4899',
+                            text: '#0f172a'
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        /* Glass & Gradient Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .sidebar-link:hover {
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            border-left: 3px solid #6366f1;
+        }
+
+        .sidebar-link.active {
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+            border-left: 3px solid #6366f1;
+            color: #4f46e5;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4f46e5, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Chart Animation */
+        .chart-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 2s ease-out forwards;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body class="font-sans font-light antialiased h-screen overflow-hidden flex bg-slate-50">
+
+    <!-- Background Blobs -->
+    <div class="blob w-96 h-96 bg-indigo-300 top-0 left-0 rounded-full mix-blend-multiply animate-blob"></div>
+
+    <!-- Main Content -->
+    <main class="flex-1 relative z-10 overflow-y-auto p-8">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-10">
+            <div>
+                <h1 class="text-3xl font-light text-slate-900">Bonjour, <span class="font-medium">Vanessa</span></h1>
+                <p class="text-slate-500 font-light mt-1">Voici la situation de votre trésorerie aujourd'hui.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 rounded-full bg-white shadow-sm text-slate-400 hover:text-indigo-600 transition">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                </button>
+                <button
+                    class="px-4 py-2 bg-slate-900 text-white rounded-full text-sm font-medium hover:bg-slate-800 transition shadow-lg shadow-indigo-500/20">
+                    + Nouvelle Facture
+                </button>
+            </div>
+        </header>
+
+        <!-- AI Copilot Section -->
+        <section class="mb-10">
+            <div
+                class="glass-panel rounded-2xl p-6 border border-indigo-100 relative overflow-hidden group hover:border-indigo-300 transition-all duration-500">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-100 to-pink-100 rounded-full blur-3xl opacity-50 -mr-20 -mt-20">
+                </div>
+
+                <div class="relative z-10 flex items-start gap-6">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-pink-600 flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/30 animate-pulse">
+                        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h2 class="text-lg font-medium text-slate-900 mb-1">Analyse du Copilote IA</h2>
+                                <p class="text-slate-500 font-light">J'ai détecté un risque de découvert dans 12 jours
+                                    basé sur vos échéances.</p>
+                            </div>
+                            <span
+                                class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-medium border border-indigo-100">Priorité
+                                Haute</span>
+                        </div>
+
+                        <div
+                            class="mt-6 p-4 rounded-xl bg-white/50 border border-white/60 flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="text-2xl font-bold text-slate-800">-3 000 €</div>
+                                <div class="text-sm text-slate-500">Déficit prévu le 24 Nov</div>
+                            </div>
+                            <div class="flex gap-3">
+                                <button
+                                    class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition shadow-md shadow-indigo-500/20">Financer
+                                    cette échéance</button>
+                                <button
+                                    class="px-4 py-2 rounded-lg bg-white text-slate-600 text-sm font-medium border border-slate-200 hover:bg-slate-50 transition">Voir
+                                    les détails</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <!-- Card 1 -->
+            <div class="glass-panel p-6 rounded-2xl border border-white/60">
+                <p class="text-sm text-slate-400 font-light mb-2">Solde Actuel</p>
+                <h3 class="text-3xl font-normal text-slate-900 mb-4">24 500 €</h3>
+                <div class="h-16 w-full relative">
+                    <svg class="w-full h-full overflow-visible" preserveAspectRatio="none">
+                        <path d="M0,40 Q40,30 80,35 T160,20 T240,30 T320,10" fill="none" stroke="#10b981"
+                            stroke-width="2" class="chart-line" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-panel p-6 rounded-2xl border border-white/60">
+                <p class="text-sm text-slate-400 font-light mb-2">Factures en attente</p>
+                <h3 class="text-3xl font-normal text-slate-900 mb-4">15 200 €</h3>
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+                    3 clients en retard
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-panel p-6 rounded-2xl border border-white/60">
+                <p class="text-sm text-slate-400 font-light mb-2">Capacité d'emprunt</p>
+                <h3 class="text-3xl font-normal text-slate-900 mb-4">20 000 €</h3>
+                <button
+                    class="w-full py-2 rounded-lg border border-indigo-100 text-indigo-600 text-sm hover:bg-indigo-50 transition">Simuler
+                    un prêt</button>
+            </div>
+        </div>
+
+        <!-- Main Chart Section -->
+        <section class="glass-panel rounded-2xl p-8 border border-white/60">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-xl font-light text-slate-900">Évolution de la Trésorerie</h3>
+                <select
+                    class="bg-transparent border-none text-slate-500 text-sm font-medium focus:ring-0 cursor-pointer">
+                    <option>30 derniers jours</option>
+                    <option>3 prochains mois</option>
+                </select>
+            </div>
+
+            <div class="h-64 w-full relative">
+                <!-- Grid Lines -->
+                <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                    <div class="h-px bg-slate-100 w-full"></div>
+                    <div class="h-px bg-slate-100 w-full"></div>
+                    <div class="h-px bg-slate-100 w-full"></div>
+                    <div class="h-px bg-slate-100 w-full"></div>
+                </div>
+
+                <!-- Chart -->
+                <svg class="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="mainChartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="rgba(99, 102, 241, 0.2)" />
+                            <stop offset="100%" stop-color="rgba(255, 255, 255, 0)" />
+                        </linearGradient>
+                    </defs>
+                    <path
+                        d="M0,150 C100,150 150,100 250,120 C350,140 450,50 550,80 C650,110 750,30 850,40 C950,50 1000,20 1200,10 L1200,250 L0,250 Z"
+                        fill="url(#mainChartGradient)" />
+                    <path
+                        d="M0,150 C100,150 150,100 250,120 C350,140 450,50 550,80 C650,110 750,30 850,40 C950,50 1000,20 1200,10"
+                        fill="none" stroke="url(#gradientStroke)" stroke-width="3" class="chart-line"
+                        stroke-linecap="round" />
+
+                    <!-- Gradient definition reused from Untitled-1 if possible, else redefined -->
+                    <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#3b82f6" />
+                        <stop offset="50%" stop-color="#6366f1" />
+                        <stop offset="100%" stop-color="#ec4899" />
+                    </linearGradient>
+                </svg>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

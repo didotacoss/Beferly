@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Architecture Schema</title>
+    <!-- Use a specific, recent version of mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 95%;
+            width: 100%;
+            overflow: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #error-container {
+            display: none;
+            background-color: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #b91c1c;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Moneywork Architecture</h1>
+        <div id="error-container"></div>
+        <div class="mermaid">
+            graph TD
+            subgraph Frontend ["Frontend (Client-Side)"]
+            User["User Browser"]
+            Landing["Landing.html"]
+            Dash["Dashboard.html"]
+
+            User -->|Visits| Landing
+            User -->|Logs in| Dash
+
+            subgraph UI ["UI Technologies"]
+            Tailwind["Tailwind CSS (CDN)"]
+            GoogleFonts["Google Fonts"]
+            VanillaJS["Vanilla JavaScript"]
+            end
+
+            Dash -.->|Uses| Tailwind
+            Dash -.->|Uses| GoogleFonts
+            end
+
+            subgraph Backend ["Backend (Server-Side)"]
+            FastAPI["FastAPI Server"]
+            Router["API Router (v1)"]
+
+            Dash -->|"HTTP Requests (JSON)"| FastAPI
+            FastAPI -->|Routes| Router
+
+            subgraph API ["API Endpoints (backend/app/api/v1)"]
+            E1["/connect-bank (POST)"]
+            E2["/dashboard/{id} (GET)"]
+            E3["/forecast/{id} (GET)"]
+            E4["/copilot/chat (POST)"]
+            E5["/finance/request (POST)"]
+            end
+
+            Router --> E1
+            Router --> E2
+            Router --> E3
+            Router --> E4
+            Router --> E5
+            end
+
+            subgraph Data ["Data & External Services"]
+            DB[("Database / SQLAlchemy")]
+            AI["Gemini AI"]
+            BankAPI["Powens API"]
+
+            E1 -.->|Connects| BankAPI
+            E2 -.->|Queries| DB
+            E3 -.->|Predicts| AI
+            E4 -.->|Chats| AI
+            end
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            logLevel: 'error'
+        });
+
+        mermaid.parseError = function (err, hash) {
+            console.error('Mermaid error:', err);
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.textContent = 'Diagram Syntax Error:\n' + err;
+            errorContainer.style.display = 'block';
+        };
+    </script>
+</body>
+
+</html>
