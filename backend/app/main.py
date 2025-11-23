@@ -11,4 +11,4 @@ app.include_router(endpoints.router, prefix=settings.API_V1_STR)
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Moneywork API"}
+    return {"message": "Welcome to Beferly API"}

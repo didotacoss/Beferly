@@ -19,7 +19,7 @@ const Graph = () => {
         <div className="font-sans flex flex-col justify-center items-center min-h-screen m-0 bg-[#f0f2f5]">
             <div className="bg-white p-8 rounded-lg shadow-md max-w-[95%] w-full overflow-auto">
                 <div className="flex justify-between items-center mb-4">
-                    <h1 className="text-center text-[#333] text-2xl font-bold flex-grow">Moneywork Architecture</h1>
+                    <h1 className="text-center text-[#333] text-2xl font-bold flex-grow">Beferly Architecture</h1>
                     <Link to="/" className="text-blue-500 hover:underline">Back to Landing</Link>
                 </div>
                 <div className="mermaid">

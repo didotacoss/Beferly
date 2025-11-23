@@ -11,11 +11,9 @@ const Landing = () => {
             <nav className="fixed w-full z-50 top-0 start-0 border-b border-white/20 bg-white/60 backdrop-blur-md">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <span className="self-center text-2xl font-thin tracking-widest text-slate-900 uppercase">
-                            Money
-                            <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-600">
-                                work
-                            </span>
+                        <img src="/assets/img/logo.jpg" className="h-10 rounded-lg" alt="Beferly Logo" />
+                        <span className="self-center text-2xl font-bold tracking-widest text-black uppercase">
+                            Beferly
                         </span>
                     </a>
                     <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -125,14 +123,14 @@ const Landing = () => {
                                             </div>
                                         </div>
 
-                                        <div className="h-40 w-full relative flex items-end justify-between gap-1 pt-4 border-b border-slate-100">
+                                        <div className="h-40 w-full relative flex items-end justify-between gap-1 pt-4 border-b border-slate-100 overflow-hidden">
                                             <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
                                                 <div className="h-px bg-slate-100 w-full"></div>
                                                 <div className="h-px bg-slate-100 w-full"></div>
                                                 <div className="h-px bg-slate-100 w-full"></div>
                                             </div>
 
-                                            <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none">
+                                            <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
                                                 <defs>
                                                     <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
                                                         <stop offset="0%" stopColor="#3b82f6" />
@@ -170,7 +168,7 @@ const Landing = () => {
                                         </div>
                                     </div>
 
-                                    <div className="absolute -bottom-6 -left-6 w-72 glass-card p-4 border border-white/50 shadow-xl shadow-indigo-200/40 animate-bounce-slow">
+                                    <div className="relative md:absolute md:-bottom-6 md:-left-6 w-full md:w-72 glass-card p-4 border border-white/50 shadow-xl shadow-indigo-200/40 animate-bounce-slow mt-4 md:mt-0">
                                         <div className="flex items-start gap-3">
                                             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shrink-0">
                                                 <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -258,7 +256,7 @@ const Landing = () => {
                             </div>
                             <h3 className="text-xl font-medium text-slate-900 mb-3">Optimisation Yield</h3>
                             <p className="text-slate-500 font-light leading-relaxed">
-                                Ne laissez pas dormir votre trésorerie. Moneywork place vos excédents automatiquement quand c'est
+                                Ne laissez pas dormir votre trésorerie. Beferly place vos excédents automatiquement quand c'est
                                 possible.
                             </p>
                         </div>
