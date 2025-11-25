@@ -93,8 +93,8 @@
         class="blob w-96 h-96 bg-blue-200 -bottom-32 left-20 rounded-full mix-blend-multiply animate-blob animation-delay-4000">
     </div>
 
-    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/20 bg-white/60 backdrop-blur-md">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/20 backdrop-blur-md bg-white/70">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 gap-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="assets/img/logo.jpg" class="h-10 rounded-lg" alt="Beferly Logo">
                 <span class="self-center text-2xl font-bold tracking-widest text-black uppercase">Beferly</span>
@@ -138,8 +138,7 @@
                             Lancer le copilote
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 7l5 5m0 0l-5 5m5-5H6">
-                                </path>
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                             </svg>
                         </a>
                         <a href="Dashboard.html"
@@ -197,17 +196,89 @@
                                                 stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
-                                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                                                    <p class="text-xs text-slate-400">Capacité d'emprunt</p>
-                                                    <p class="text-lg font-medium text-green-600">20 000€</p>
-                                                </div>
+                                            </svg>
+                                            Risque J+12
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="h-40 w-full relative flex items-end justify-between gap-1 pt-4 border-b border-slate-100 overflow-hidden">
+                                    <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                                        <div class="h-px bg-slate-100 w-full"></div>
+                                        <div class="h-px bg-slate-100 w-full"></div>
+                                        <div class="h-px bg-slate-100 w-full"></div>
+                                    </div>
+
+                                    <svg class="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                                        <defs>
+                                            <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stop-color="#3b82f6" />
+                                                <stop offset="50%" stop-color="#6366f1" />
+                                                <stop offset="100%" stop-color="#ec4899" />
+                                            </linearGradient>
+                                            <linearGradient id="gradientFill" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" stop-color="rgba(99, 102, 241, 0.2)" />
+                                                <stop offset="100%" stop-color="rgba(255, 255, 255, 0)" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path
+                                            d="M0,80 C50,80 100,40 150,60 C200,80 250,120 300,110 C350,100 400,20 450,10 L450,160 L0,160 Z"
+                                            fill="url(#gradientFill)" />
+                                        <path
+                                            d="M0,80 C50,80 100,40 150,60 C200,80 250,120 300,110 C350,100 400,20 450,10"
+                                            fill="none" stroke="url(#gradientStroke)" stroke-width="3"
+                                            class="chart-line" stroke-linecap="round" />
+                                        <circle cx="300" cy="110" r="4" fill="#ef4444" stroke="white" stroke-width="2"
+                                            class="animate-ping" />
+                                        <circle cx="300" cy="110" r="4" fill="#ef4444" stroke="white"
+                                            stroke-width="2" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div
+                                class="relative md:absolute md:-bottom-6 md:-left-6 w-full md:w-72 glass-card p-4 border border-white/50 shadow-xl shadow-indigo-200/40 animate-bounce-slow mt-4 md:mt-0">
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shrink-0">
+                                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-bold text-indigo-600 mb-1">COPILOTE IA</p>
+                                        <p class="text-sm text-slate-700 leading-snug">Attention, déficit de <strong>3
+                                                000€</strong> prévu le 24 nov. Je lance un financement ?</p>
+                                        <div class="mt-3 flex gap-2">
+                                            <button
+                                                class="px-3 py-1 rounded-md bg-indigo-600 text-white text-xs font-medium hover:bg-indigo-700 transition">Oui,
+                                                financer</button>
+                                            <button
+                                                class="px-3 py-1 rounded-md bg-slate-100 text-slate-500 text-xs hover:bg-slate-200 transition">Ignorer</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                            <div class="grid grid-cols-2 gap-3 mt-6">
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                    <p class="text-xs text-slate-400">Factures en attente</p>
+                                    <p class="text-lg font-medium text-slate-800">15 200€</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                    <p class="text-xs text-slate-400">Capacité d'emprunt</p>
+                                    <p class="text-lg font-medium text-green-600">20 000€</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
     </section>
 
     <section class="py-20 bg-white/50 relative">
@@ -256,6 +327,68 @@
                         Beferly place vos excédents automatiquement quand c'est possible.</p>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-light text-slate-900 mb-4">Un modèle transparent.</h2>
+            <p class="text-slate-500">Choisissez la vitesse de votre croissance.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+            <div class="p-8 rounded-3xl border border-slate-200 bg-white hover:border-indigo-200 transition-all group">
+                <h3 class="text-lg font-medium text-slate-500 mb-2">Basic</h3>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-normal text-slate-900">49€</span>
+                    <span class="text-slate-400">/mois</span>
+                </div>
+                <ul class="space-y-4 mb-8 text-sm text-slate-600">
+                    <li class="flex items-center gap-3"><svg class="w-5 h-5 text-indigo-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg> Dashboard temps réel</li>
+                    <li class="flex items-center gap-3"><svg class="w-5 h-5 text-indigo-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg> Copilote IA (Standard)</li>
+                    <li class="flex items-center gap-3"><svg class="w-5 h-5 text-indigo-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg> Accès financement (Commission 1%)</li>
+                </ul>
+                <button
+                    class="w-full py-3 rounded-xl border border-slate-200 text-slate-600 hover:border-indigo-500 hover:text-indigo-600 transition">Commencer</button>
+            </div>
+
+            <div
+                class="relative p-8 rounded-3xl border border-indigo-500 bg-slate-900 text-white shadow-2xl shadow-indigo-500/20 transform md:-translate-y-4">
+                <div
+                    class="absolute top-0 right-0 bg-gradient-to-r from-indigo-500 to-pink-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-2xl uppercase tracking-wider">
+                    Populaire</div>
+
+                <h3 class="text-lg font-medium text-indigo-200 mb-2">Pro</h3>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-normal text-white">89€</span>
+                    <span class="text-slate-400">/mois</span>
+                </div>
+                <ul class="space-y-4 mb-8 text-sm text-slate-300">
+                    <li class="flex items-center gap-3"><span
+                            class="bg-indigo-500/20 p-1 rounded-full text-indigo-400">✓</span> Prévisions IA étendues
+                        (90j)</li>
+                    <li class="flex items-center gap-3"><span
+                            class="bg-indigo-500/20 p-1 rounded-full text-indigo-400">✓</span> Alertes Proactives</li>
+                    <li class="flex items-center gap-3 text-white font-medium"><span
+                            class="bg-pink-500/20 p-1 rounded-full text-pink-400">✓</span> Financement à prix coûtant
+                        (0%)</li>
+                    <li class="flex items-center gap-3 text-white font-medium"><span
+                            class="bg-pink-500/20 p-1 rounded-full text-pink-400">✓</span> Placement Trésorerie</li>
+                </ul>
+                <button
+                    class="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg hover:shadow-indigo-500/40 transition font-medium">Passer
+                    Pro</button>
             </div>
         </div>
     </section>

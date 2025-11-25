@@ -268,6 +268,190 @@
 
     </main>
 
+    <!-- Copilot Overlay -->
+    <div class="fixed bottom-8 right-8 w-96 z-50">
+        <div
+            class="relative bg-white/90 backdrop-blur-xl border border-indigo-200 rounded-2xl shadow-2xl shadow-indigo-500/20 overflow-hidden transform transition-all hover:scale-105 duration-300">
+
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                    <span class="text-white font-medium text-sm tracking-wide">Moneywork Copilot</span>
+                </div>
+                <svg id="btn-minimize"
+                    class="w-5 h-5 text-white/80 cursor-pointer hover:text-white transform transition-transform duration-300"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+
+            <div id="copilot-content"
+                class="p-4 space-y-4 h-80 overflow-y-auto bg-slate-50/50 transition-all duration-300">
+
+                <div class="flex gap-3">
+                    <div
+                        class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center shrink-0 border border-indigo-200">
+                        <span class="text-xs">🤖</span>
+                    </div>
+                    <div
+                        class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-100 shadow-sm text-sm text-slate-600">
+                        Bonjour Vanessa. J'ai analysé les factures Pennylane. <span class="font-bold text-indigo-600">Un
+                            trou de 3 000€</span> est prévu le 24/11.
+                    </div>
+                </div>
+
+                <div class="flex gap-3 flex-row-reverse">
+                    <div
+                        class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center shrink-0 border border-pink-200">
+                        <span class="text-xs text-pink-600 font-bold">V</span>
+                    </div>
+                    <div class="bg-indigo-600 p-3 rounded-2xl rounded-tr-none shadow-md text-sm text-white">
+                        Peux-tu me proposer une solution ?
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div
+                        class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center shrink-0 border border-indigo-200">
+                        <span class="text-xs">🤖</span>
+                    </div>
+                    <div
+                        class="bg-white p-3 rounded-2xl rounded-tl-none border border-indigo-200 shadow-md text-sm text-slate-800 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+                        <p class="mb-2">Bien sûr. Voici deux options :</p>
+                        <ul class="space-y-2">
+                            <li id="btn-finance"
+                                class="flex items-center gap-2 p-2 rounded bg-indigo-50 hover:bg-indigo-100 cursor-pointer transition border border-indigo-100">
+                                <span class="w-4 h-4 rounded-full border border-indigo-400"></span>
+                                <span>Financer la facture "Client Z" (30j)</span>
+                            </li>
+                            <li
+                                class="flex items-center gap-2 p-2 rounded bg-slate-50 hover:bg-slate-100 cursor-pointer transition border border-slate-200">
+                                <span class="w-4 h-4 rounded-full border border-slate-400"></span>
+                                <span>Décaler le prélèvement URSSAF</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="copilot-input" class="p-3 border-t border-slate-100 bg-white transition-all duration-300">
+                <div class="relative">
+                    <input type="text" placeholder="Répondre à Copilot..."
+                        class="w-full pl-4 pr-10 py-2 rounded-full border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none text-sm transition-all"
+                        disabled>
+                    <button
+                        class="absolute right-2 top-1.5 p-1 bg-indigo-600 rounded-full text-white hover:bg-indigo-700 transition">
+                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financing Modal -->
+    <div id="modal-finance" class="fixed inset-0 z-[60] flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden border border-white/50">
+            <div class="h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 class="text-2xl font-light text-slate-900">Financer la facture <span
+                                class="font-medium">#F2024-89</span></h2>
+                        <p class="text-slate-500 text-sm mt-1">Partenaire : <span
+                                class="font-semibold text-indigo-600">Defacto</span></p>
+                    </div>
+                    <div
+                        class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full border border-green-200">
+                        PRÉ-APPROUVÉ
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 mb-6 relative overflow-hidden">
+                    <div class="grid grid-cols-2 gap-8 relative z-10">
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Montant Reçu</p>
+                            <p class="text-3xl font-light text-slate-900">8 000 <span class="text-lg">€</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Coût Total</p>
+                            <p class="text-3xl font-light text-slate-900">120 <span class="text-lg">€</span></p>
+                            <p class="text-[10px] text-slate-400">(Dont commission Moneywork 1%)</p>
+                        </div>
+                    </div>
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl"></div>
+                </div>
+
+                <div class="space-y-3 mb-8">
+                    <div class="flex items-center gap-3 text-sm text-slate-600">
+                        <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Virement instantané sur compte FR76...</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-600">
+                        <svg class="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Remboursement automatique à J+30</span>
+                    </div>
+                </div>
+
+                <button onclick="closeModal()"
+                    class="w-full py-4 rounded-xl bg-slate-900 text-white font-medium hover:bg-slate-800 hover:scale-[1.01] transition-all shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 group">
+                    <svg class="w-5 h-5 group-hover:animate-bounce" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Débloquer les fonds
+                </button>
+                <p class="text-center text-xs text-slate-400 mt-4">En cliquant, vous acceptez les CGU de Defacto et
+                    Moneywork.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btnFinance = document.getElementById('btn-finance');
+        const modalFinance = document.getElementById('modal-finance');
+        const btnMinimize = document.getElementById('btn-minimize');
+        const copilotContent = document.getElementById('copilot-content');
+        const copilotInput = document.getElementById('copilot-input');
+        let isMinimized = false;
+
+        btnFinance.addEventListener('click', () => {
+            modalFinance.classList.remove('hidden');
+        });
+
+        function closeModal() {
+            modalFinance.classList.add('hidden');
+        }
+
+        btnMinimize.addEventListener('click', () => {
+            isMinimized = !isMinimized;
+            if (isMinimized) {
+                copilotContent.style.height = '0';
+                copilotContent.style.padding = '0';
+                copilotContent.style.opacity = '0';
+                copilotInput.style.display = 'none';
+                btnMinimize.style.transform = 'rotate(180deg)';
+            } else {
+                copilotContent.style.height = '20rem'; // h-80
+                copilotContent.style.padding = '1rem'; // p-4
+                copilotContent.style.opacity = '1';
+                copilotInput.style.display = 'block';
+                btnMinimize.style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
+
 </body>
 
 </html>
