@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isCopilotMinimized, setIsCopilotMinimized] = useState(false);
+    // Initialize minimized if screen is small (mobile)
+    const [isCopilotMinimized, setIsCopilotMinimized] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -177,8 +178,8 @@ const Dashboard = () => {
             </main>
 
             {/* Copilot Overlay */}
-            <div className="fixed bottom-8 right-8 w-96 z-50">
-                <div className="relative bg-white/90 backdrop-blur-xl border border-indigo-200 rounded-2xl shadow-2xl shadow-indigo-500/20 overflow-hidden transform transition-all hover:scale-105 duration-300">
+            <div className="fixed bottom-4 left-4 right-4 md:left-auto md:bottom-8 md:right-8 md:w-96 z-50">
+                <div className="relative bg-white/90 backdrop-blur-xl border border-indigo-200 rounded-2xl shadow-2xl shadow-indigo-500/20 overflow-hidden transform transition-all md:hover:scale-105 duration-300">
 
                     <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 flex items-center justify-between">
                         <div className="flex items-center gap-3">
